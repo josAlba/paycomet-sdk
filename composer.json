@@ -1,0 +1,17 @@
+{
+    "name": "josalba/paycomet-sdk",
+    "autoload": {
+        "psr-4": {
+            "Paycomet\\Sdk\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "DuKe",
+            "email": "josalba@icloud.com"
+        }
+    ],
+    "require": {
+      "ext-soap": "*"
+    }
+}
