@@ -4,7 +4,7 @@ namespace Paycomet\Sdk;
 
 use Paycomet\Sdk\Models\PurchaseUrl;
 
-class PaymentWebIframe extends Paycomet
+class PaymentIframe extends Paycomet
 {
     private const OPERATION_TYPE_DEFAULT = 1;
 

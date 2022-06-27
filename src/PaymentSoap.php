@@ -22,7 +22,7 @@ use Paycomet\Sdk\Models\SOAP\SoapInterface;
 use Paycomet\Sdk\Models\User;
 use SoapClient;
 
-class PaymentWebSoap extends Paycomet
+class PaymentSoap extends Paycomet
 {
     protected function getSoapClient(): SoapInterface
     {

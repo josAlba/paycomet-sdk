@@ -13,5 +13,10 @@
     ],
     "require": {
       "ext-soap": "*"
+    },
+    "config": {
+        "platform": {
+            "php": "7.4"
+        }
     }
 }
