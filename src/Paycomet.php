@@ -2,9 +2,7 @@
 
 namespace Paycomet\Sdk;
 
-use Paycomet\Sdk\Models\PaycometConfiguration;
-use Paycomet\Sdk\Models\SOAP\SoapInterface;
-use SoapClient;
+use Dotenv\Dotenv;
 
 abstract class Paycomet
 {
@@ -16,12 +14,32 @@ abstract class Paycomet
     protected string $ip;
     protected ?string $jetid;
 
-    public function __construct(PaycometConfiguration $paycometConfiguration)
+    public function __construct()
     {
-        $this->merchantCode = $paycometConfiguration->getMerchantCode();
-        $this->terminal = $paycometConfiguration->getTerminal();
-        $this->password = $paycometConfiguration->getPassword();
-        $this->ip = $paycometConfiguration->getIp();
-        $this->jetid = $paycometConfiguration->getJetId();
+        $dotenv = Dotenv::createImmutable(__DIR__.'/../');
+        $dotenv->load();
+
+        $this->merchantCode = $_ENV['PAYCOMET_MERCHANT_CODE'];
+        $this->terminal = $_ENV['PAYCOMET_PASSWORD'];
+        $this->password = $_ENV['PAYCOMET_TERMINAL'];
+        $this->jetid = empty($_ENV['PAYCOMET_JET_ID']) ? $_ENV['PAYCOMET_JET_ID'] : null;
+        $this->ip = $this->getClientIp();
+    }
+
+    private function getClientIp(): string
+    {
+        try {
+            return $_SERVER['REMOTE_ADDR'] ??
+                $_SERVER['HTTP_X_FORWARDED_FOR'] ??
+                $_SERVER['HTTP_X_FORWARDED'] ??
+                $_SERVER['HTTP_FORWARDED_FOR'] ??
+                $_SERVER['HTTP_FORWARDED'] ??
+                $_SERVER['HTTP_CLIENT_IP'] ??
+                $_SERVER['SERVER_ADDR'];
+        } catch (\Throwable $exception) {
+
+        }
+
+        return '';
     }
 }
