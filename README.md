@@ -16,6 +16,8 @@ PAYCOMET_JET_ID='{tu-jet-id}'
 ## Class
 * PaymentIframe: Realizar el pago a través de una url de paycomet
 * PaymentSoap: Realizar el paga a través de la Api.
+* SubscriptionsSoap: Realiza la suscripción por Api.
+* UsersSoap: Realiza acciones de usuario por Api.
 
 ## REFERRAL
 [PAYCOMET/php-bankstore](https://github.com/PAYCOMET/php-bankstore)

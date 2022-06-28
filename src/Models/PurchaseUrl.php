@@ -5,7 +5,7 @@ namespace Paycomet\Sdk\Models;
 class PurchaseUrl
 {
     private string $transferenceIdentifier;
-    private float $amount;
+    private int $amount;
     private string $currency;
     private string $language;
     private ?string $description;
@@ -23,7 +23,7 @@ class PurchaseUrl
      * Devuelve la URL para lanzar un execute_purchase bajo IFRAME/Fullscreen
      *
      * @param string $transferenceIdentifier Identificador único del pago
-     * @param float $amount Importe del pago 1€ = 100
+     * @param int $amount Importe del pago 1€ = 100
      * @param string $currency Identificador de la moneda de la operación
      * @param string $language (optional) Idioma de los literales de la transacción
      * @param string|null $description (optional) Descripción de la operación
@@ -39,7 +39,7 @@ class PurchaseUrl
      */
     public function __construct(
         string $transferenceIdentifier,
-        float $amount,
+        int $amount,
         string $currency,
         string $language = "ES",
         ?string $description = null,
@@ -74,7 +74,7 @@ class PurchaseUrl
         return $this->transferenceIdentifier;
     }
 
-    public function getAmount(): float
+    public function getAmount(): int
     {
         return $this->amount;
     }

@@ -11,7 +11,7 @@ use Paycomet\Sdk\Models\SOAP\InfoUserResponse;
 use Paycomet\Sdk\Models\SOAP\RemoveUserResponse;
 use Paycomet\Sdk\Models\User;
 
-class Users extends AbstractPaycometSoap
+class UsersSoap extends AbstractPaycometSoap
 {
     public function addUser(Card $cardModel): AddUserResponse
     {
