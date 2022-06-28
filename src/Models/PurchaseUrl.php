@@ -9,7 +9,7 @@ class PurchaseUrl
     private string $currency;
     private string $language;
     private ?string $description;
-    private ?string $secure3;
+    private string $secure3;
     private ?int $scoring;
     private ?string $urlOk;
     private ?string $urlKo;
@@ -27,7 +27,7 @@ class PurchaseUrl
      * @param string $currency Identificador de la moneda de la operación
      * @param string $language (optional) Idioma de los literales de la transacción
      * @param string|null $description (optional) Descripción de la operación
-     * @param string|null $secure3 (optional) Forzar la operación por 0 = No segura y 1 = Segura mediante 3DSecure
+     * @param string $secure3 (optional) Forzar la operación por 0 = No segura y 1 = Segura mediante 3DSecure
      * @param integer|null $scoring (optional) Valor de scoring de riesgo de la transacción
      * @param string|null $urlOk (optional) URL a la que redirigir en caso de éxito.
      * @param string|null $urlKo (optional) URL a la que redirigir en caso de error.
@@ -43,7 +43,7 @@ class PurchaseUrl
         string $currency,
         string $language = "ES",
         ?string $description = null,
-        ?string $secure3  = null,
+        string $secure3  = '1',
         ?int $scoring = null,
         ?string $urlOk = null,
         ?string $urlKo = null,
@@ -94,7 +94,7 @@ class PurchaseUrl
         return $this->description;
     }
 
-    public function getSecure3(): ?string
+    public function getSecure3(): string
     {
         return $this->secure3;
     }

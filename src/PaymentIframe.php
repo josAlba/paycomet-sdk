@@ -92,13 +92,32 @@ class PaymentIframe extends AbstractPaycomet
 
     private function getSignature(PurchaseUrl $purchaseUrl): string
     {
-        return $this->merchantCode.
+        $signature = $this->merchantCode.
             $this->terminal.
             self::OPERATION_TYPE_DEFAULT.
             $purchaseUrl->getTransferenceIdentifier().
             $purchaseUrl->getAmount().
             $purchaseUrl->getCurrency().
             md5($this->password);
+
+        return hash(self::SHA_512, $signature);
+    }
+
+    /**
+     * @param string[] $parameters
+     *
+     * @return void
+     */
+    private function getContent(array $parameters): string
+    {
+        $content = "";
+
+        foreach ($parameters as $key => $value) {
+            $this->addSeparator($content);
+            $this->addValue($key, $value, $content);
+        }
+
+        return $content;
     }
 
     /**
@@ -108,12 +127,7 @@ class PaymentIframe extends AbstractPaycomet
      */
     private function calculateVHASH(array &$parameters): void
     {
-        $content = "";
-
-        foreach ($parameters as $key => $value) {
-            $this->addSeparator($content);
-            $this->addValue($key, $value, $content);
-        }
+        $content = $this->getContent($parameters);
 
         $parameters["VHASH"] = hash(self::SHA_512, md5($content.md5($this->password)));
     }
@@ -125,14 +139,7 @@ class PaymentIframe extends AbstractPaycomet
      */
     private function getSecureUrlHash(array $parameters): string
     {
-        $secureUrlHash = "";
-
-        foreach ($parameters as $key => $value) {
-            $this->addSeparator($content);
-            $this->addValue($key, $value, $content);
-        }
-
-        return $secureUrlHash;
+        return $this->getContent($parameters);
     }
 
     private function addSeparator(string &$content): void

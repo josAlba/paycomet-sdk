@@ -20,8 +20,8 @@ abstract class AbstractPaycomet
         $dotenv->load();
 
         $this->merchantCode = $_ENV['PAYCOMET_MERCHANT_CODE'];
-        $this->terminal = $_ENV['PAYCOMET_PASSWORD'];
-        $this->password = $_ENV['PAYCOMET_TERMINAL'];
+        $this->terminal = $_ENV['PAYCOMET_TERMINAL'];
+        $this->password = $_ENV['PAYCOMET_PASSWORD'];
         $this->jetid = $this->getJetId();
         $this->ip = $this->getClientIp();
     }
@@ -45,6 +45,6 @@ abstract class AbstractPaycomet
 
     private function getJetId(): ?string
     {
-        return empty($_ENV['PAYCOMET_JET_ID']) ? $_ENV['PAYCOMET_JET_ID'] : null;
+        return !empty($_ENV['PAYCOMET_JET_ID']) ? $_ENV['PAYCOMET_JET_ID'] : null;
     }
 }
