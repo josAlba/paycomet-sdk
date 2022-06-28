@@ -4,7 +4,7 @@ namespace Paycomet\Sdk;
 
 use Dotenv\Dotenv;
 
-abstract class Paycomet
+abstract class AbstractPaycomet
 {
     protected const SHA_512 = 'sha512';
 
@@ -22,7 +22,7 @@ abstract class Paycomet
         $this->merchantCode = $_ENV['PAYCOMET_MERCHANT_CODE'];
         $this->terminal = $_ENV['PAYCOMET_PASSWORD'];
         $this->password = $_ENV['PAYCOMET_TERMINAL'];
-        $this->jetid = empty($_ENV['PAYCOMET_JET_ID']) ? $_ENV['PAYCOMET_JET_ID'] : null;
+        $this->jetid = $this->getJetId();
         $this->ip = $this->getClientIp();
     }
 
@@ -41,5 +41,10 @@ abstract class Paycomet
         }
 
         return '';
+    }
+
+    private function getJetId(): ?string
+    {
+        return empty($_ENV['PAYCOMET_JET_ID']) ? $_ENV['PAYCOMET_JET_ID'] : null;
     }
 }

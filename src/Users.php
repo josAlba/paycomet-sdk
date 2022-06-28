@@ -11,12 +11,11 @@ use Paycomet\Sdk\Models\SOAP\InfoUserResponse;
 use Paycomet\Sdk\Models\SOAP\RemoveUserResponse;
 use Paycomet\Sdk\Models\User;
 
-class Users extends Paycomet
+class Users extends AbstractPaycometSoap
 {
     public function addUser(Card $cardModel): AddUserResponse
     {
         $signature = $this->getSignatureCard($cardModel);
-        $ip = $this->GetClientIp();
 
         $addUser = $this->getSoapClient()->add_user(
             $this->merchantCode,
@@ -25,7 +24,8 @@ class Users extends Paycomet
             $cardModel->getExpirate(),
             $cardModel->getCvv(),
             $signature,
-            $ip
+            $this->ip,
+            null
         );
 
         return AddUserResponseFactory::build($addUser);
@@ -34,7 +34,6 @@ class Users extends Paycomet
     public function infoUser(User $userModel): InfoUserResponse
     {
         $signature = $this->getSignatureUser($userModel);
-        $ip = $this->GetClientIp();
 
         $infoUser = $this->getSoapClient()->info_user(
             $this->merchantCode,
@@ -42,7 +41,7 @@ class Users extends Paycomet
             $userModel->getUserId(),
             $userModel->getToken(),
             $signature,
-            $ip
+            $this->ip
         );
 
         return InfoUserResponseFactory::build($infoUser);
@@ -51,7 +50,6 @@ class Users extends Paycomet
     public function removeUser(User $userModel): RemoveUserResponse
     {
         $signature = $this->getSignatureUser($userModel);
-        $ip = $this->GetClientIp();
 
         $removeUser = $this->getSoapClient()->remove_user(
             $this->merchantCode,
@@ -59,7 +57,7 @@ class Users extends Paycomet
             $userModel->getUserId(),
             $userModel->getToken(),
             $signature,
-            $ip
+            $this->ip
         );
 
         return RemoveUserResponseFactory::build($removeUser);

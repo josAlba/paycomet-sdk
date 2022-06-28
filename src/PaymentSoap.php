@@ -18,20 +18,10 @@ use Paycomet\Sdk\Models\SOAP\ExecutePurchaseResponse;
 use Paycomet\Sdk\Models\SOAP\PreauthorizationCancelResponse;
 use Paycomet\Sdk\Models\SOAP\PreauthorizationConfirmResponse;
 use Paycomet\Sdk\Models\SOAP\RefundResponse;
-use Paycomet\Sdk\Models\SOAP\SoapInterface;
 use Paycomet\Sdk\Models\User;
-use SoapClient;
 
-class PaymentSoap extends Paycomet
+class PaymentSoap extends AbstractPaycometSoap
 {
-    protected function getSoapClient(): SoapInterface
-    {
-        /** @var SoapInterface $clientSOAP */
-        $clientSOAP = new SoapClient(Endpoints::ENDPOINT_SOAP);
-
-        return $clientSOAP;
-    }
-
     /**
      * Ejecuta un pago por web service.
      *
@@ -139,8 +129,8 @@ class PaymentSoap extends Paycomet
             $this->terminal,
             $refund->getUser()->getUserId(),
             $refund->getUser()->getToken(),
-            $refund->getAuthcode(),
-            $refund->getTransreferenceIdentifier(),
+            $refund->getAuthCode(),
+            $refund->getTransferenceIdentifier(),
             $refund->getCurrency(),
             $signature,
             $this->ip,
@@ -271,8 +261,8 @@ class PaymentSoap extends Paycomet
             $refund->getUser()->getUserId().
             $refund->getUser()->getToken().
             $this->terminal.
-            $refund->getAuthcode().
-            $refund->getTransreferenceIdentifier().
+            $refund->getAuthCode().
+            $refund->getTransferenceIdentifier().
             $this->password;
 
         return hash(self::SHA_512, $signature);

@@ -21,7 +21,7 @@ class Purchase
     /**
      * @param User $user
      * @param int $amount Importe del pago 1€ = 100
-     * @param string $transreferenceIdentifier Identificador único del pago
+     * @param string $transferenceIdentifier Identificador único del pago
      * @param string $currency Identificador de la moneda de la operación
      * @param string|null $productDescription Descripción del producto
      * @param string|null $owner Titular de la tarjeta
@@ -36,7 +36,7 @@ class Purchase
     public function __construct(
         User $user,
         int $amount,
-        string $transreferenceIdentifier,
+        string $transferenceIdentifier,
         string $currency,
         ?string $productDescription,
         ?string $owner,
@@ -50,7 +50,7 @@ class Purchase
     ) {
         $this->user = $user;
         $this->amount = $amount;
-        $this->transferenceIdentifier = $transreferenceIdentifier;
+        $this->transferenceIdentifier = $transferenceIdentifier;
         $this->currency = $currency;
         $this->productDescription = $productDescription;
         $this->owner = $owner;
@@ -68,7 +68,7 @@ class Purchase
         return $this->user;
     }
 
-    public function getAmount()
+    public function getAmount(): int
     {
         return $this->amount;
     }

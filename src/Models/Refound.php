@@ -5,9 +5,9 @@ namespace Paycomet\Sdk\Models;
 class Refound
 {
     private User $user;
-    private string $transreferenceIdentifier;
+    private string $transferenceIdentifier;
     private string $currency;
-    private string $authcode;
+    private string $authCode;
     private ?string $amount;
     private ?string $merchant_description;
 
@@ -15,7 +15,7 @@ class Refound
      * @param User $user
      * @param string $transferenceIdentifier Identificador único del pago
      * @param string $currency Identificador de la moneda de la operación
-     * @param string $authcode AuthCode de la operación original a devolver
+     * @param string $authCode AuthCode de la operación original a devolver
      * @param string|null $amount (optional) Importe del pago 1€ = 100
      * @param string|null $merchant_description (optional) Descriptor del Comercio
      */
@@ -23,14 +23,14 @@ class Refound
         User $user,
         string $transferenceIdentifier,
         string $currency,
-        string $authcode,
+        string $authCode,
         ?string $amount,
         ?string $merchant_description
     ) {
         $this->user = $user;
-        $this->transreferenceIdentifier = $transferenceIdentifier;
+        $this->transferenceIdentifier = $transferenceIdentifier;
         $this->currency = $currency;
-        $this->authcode = $authcode;
+        $this->authCode = $authCode;
         $this->amount = $amount;
         $this->merchant_description = $merchant_description;
     }
@@ -40,9 +40,9 @@ class Refound
         return $this->user;
     }
 
-    public function getTransreferenceIdentifier(): string
+    public function getTransferenceIdentifier(): string
     {
-        return $this->transreferenceIdentifier;
+        return $this->transferenceIdentifier;
     }
 
     public function getCurrency(): string
@@ -50,9 +50,9 @@ class Refound
         return $this->currency;
     }
 
-    public function getAuthcode(): string
+    public function getAuthCode(): string
     {
-        return $this->authcode;
+        return $this->authCode;
     }
 
     public function getAmount(): ?string
