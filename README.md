@@ -19,5 +19,6 @@ PAYCOMET_JET_ID='{tu-jet-id}'
 * SubscriptionsSoap: Realiza la suscripción por Api.
 * UsersSoap: Realiza acciones de usuario por Api.
 
-## REFERRAL
-[PAYCOMET/php-bankstore](https://github.com/PAYCOMET/php-bankstore)
+## Enlaces
+* [PAYCOMET/php-bankstore](https://github.com/PAYCOMET/php-bankstore)
+* [Tarjetas de prueba](https://docs.paycomet.com/es/recursos/testcards)
